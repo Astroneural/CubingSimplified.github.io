@@ -1,0 +1,519 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PLL Algorithms</title>
+            <link rel="shortcut icon" type="x-icon" href="NewLogo-removebg-preview.png">
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+                <script src="https://kit.fontawesome.com/e07ccf7e6a.js" crossorigin="anonymous"></script>
+                <style>
+                    body {
+                        font-family: 'Montserrat', sans-serif;
+                        background-color: rgb(255, 255, 255);
+                        color: rgb(0, 0, 0)
+                        
+                    }
+                    .content-table {
+                    border-collapse: collapse;
+                    margin: 25px 0;
+                    font-size: 0.9em;
+                    min-width: 400px;
+                    border-radius: 1px 1px 1px 1px;
+                    overflow: hidden;
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+                    border-radius: 25px;
+                    border: none;
+                    }
+
+                    .content-table thead tr {
+                    background-color: #0D6EFE;
+                    color: #ffffff;
+                    text-align: left;
+                    font-weight: bold;
+                    }
+
+                    .content-table th,
+                    .content-table td {
+                    padding: 1rem 2rem;
+                    border: .5px solid #eeeeee;
+                    }
+
+                    .content-table tbody tr {
+                    border-bottom: 1px solid #dddddd;
+                    }
+                    
+                    .content-table tbody tr:nth-of-type(even) {
+                    background-color: #f3f3f3;
+                    }
+                    
+                    .content-table tbody tr:last-of-type {
+                    border-bottom:3px solid #0D6EFE;
+                    }
+                    
+                    .content-table tbody tr.active-row {
+                    font-weight: bold;
+                    color: #0D6EFE }
+
+
+                    /* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #0D6EFE;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #0D6EFE;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+                </style>
+            
+                    
+    </head>
+     <body>
+<br>
+
+
+<div class="navbar">
+    <a href="CAC.html">Home</a>
+    <a href="SignUp.html">Sign Up</a>
+    <a href="Login.html">Login</a>
+    <div class="dropdown">
+      <button class="dropbtn">Algorithms
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="PLL.html">PLL</a>
+        <a href="OLL.html">OLL</a>
+        <a href="#">Link 3</a>
+      </div>
+    </div>
+  </div>
+<h1><center>All 21 PLL Algorithms</center></h1>
+        <h4><center>Permuting Last Layer, or PLL, is the final step in the CFOP method, also known as the Fridrich method. One-look and two-look are the two main PLL set methods. The first method permutes the entire last layer. The second method is similar to the first, but with a few more steps. After the OLL step (Orienting Last Layer), this step follows. There are precisely 21 PLL cases, each labeled with a letter in the English alphabet. The algorithm name, an image of the case, and available algorithms to solve the case are given below, as is information about the case including the category, alternate names, algorithm sets the algorithm is used in, and probability of the case appearing in a solve.</center></h4>
+        
+        <center><h4>Search Specific Cases &nbsp;Algorithm Sorting</h4></center>
+        
+        <center><table border="1" cellpadding=10 cellspacing=4 class="content-table">
+        
+            &nbsp;<input type="text" id="input" placeholder="Search Spesific Cases"> &nbsp; 
+            <form style="font-family: 'Montserrat', sans-serif">
+                <select name="Order to Learn">
+                    <option value="Normal"  style="font-family: 'Montserrat', sans-serif">Normal</option>
+                    <option value="Order to Learn"  style="font-family: 'Montserrat', sans-serif">Order to Learn</option>
+                    <option value="Alphabetically"  style="font-family: 'Montserrat', sans-serif">Alphabetically</option>
+                    <option value="Favorites First"  style="font-family: 'Montserrat', sans-serif">Favorites First</option>
+                    <option value="Learnt First"  style="font-family: 'Montserrat', sans-serif">Learnt First</option>
+                    <option value="Learning First"  style="font-family: 'Montserrat', sans-serif">Learning First</option>
+                    <option value="Unlearnt"  style="font-family: 'Montserrat', sans-serif">Unlearnt</option>
+                </select>
+            </form> </center>
+           
+        <thead>
+                <tr>
+                    <th>Algorithm Name</th>
+                    <th>Case Image</th>
+                    <th>Algorithm(s)</th>
+                    <th>Information</th>
+                    <th>Videos</th>
+                </tr>
+        </thead>
+              <tbody id="list">
+                <tr>
+                    <td>Aa Perm</td> 
+                    <td align="left"><img src="https://i.postimg.cc/SnSkhxBY/Aa-Perm-Arrows.png"></td>
+                    <td><b>1.</b> x L2 D2 (L' U' L) D2 (L' U L')<br>
+                        <b>2.</b> r U r' U' r' F r2 U' r' U' r U r' F'<br>
+                        <b>3.</b> y x R' U R' D2 R U' R' D2 R2 x'<br>
+                        <b>4.</b> y R' B' R2 D R' U' R D' R' U R' B R</td>
+
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                    <b>Alternate Name(s)</b> - None <br>
+                    <b>Used in</b> - CPLL, PLL, L3C, ZBLL, BLD<br>
+                    <b>Probability</b> - <font style="color:dodgerblue">1/18</font>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Ab Perm</td>
+                    <td><img src="https://i.postimg.cc/SnSkhxBY/Aa-Perm-Arrows.png" align="left"></td>
+                    <td><b>1.</b> x' L2 D2 (L U L') D2 (L U' L)<br>
+                        <b>2.</b> y2 x R2 D2 (R U R') D2 (R U' R)<br>
+                        <b>3.</b> y x' R U' R D2 R' U R D2 R2 x<br>
+                        <b>4.</b> R' B' R U' R D R' U R D' R2' B R</td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - CPLL, PLL, L4C, ZBLL, ZZLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>F Perm</td>
+                    <td align="right"><img src="https://i.postimg.cc/xNLn0JjM/F-Perm-Arrows.png"></td>
+                    <td><b>1.</b> R' U' F' (R U R' U') R' F (R2 U' R' U') (R U R' U) R<br>
+                        <b>2.</b> y' R' U R U' R2 F' U' F U R F R' F' R2 [U']<br>
+                        <b>3.</b> R2' F R F' R' U' F' U F R2 U R' U' R<br>
+                        <b>4.</b> S (R' F R f') (R' F R2 U R') U' R' F' R2 U R'</td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, ZZLL, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Ga Perm</td>
+                    <td><img src="https://i.postimg.cc/XGC08GCm/Ga-Perm-Arrows.png" ></td>
+                    <td><b>1.</b> (R2 U R' U) (R' U' R U') R2 (U' D) (R' U R) D'<br>
+                    <b>2.</b> R2 u (R' U R' U') R u' R2 y' (R' U R)<br>
+                    <b>3.</b> D' R2 U R' U R' U' R U' R2 U' D R' U R<br>
+                    <b>4.</b> R2 u R' U R' U' R u' R2 y' R' U R</td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Gb Perm</td>
+                    <td><img src="https://i.postimg.cc/T5jMzzQc/Gb-Perm-Arrows.png"></td>
+                    <td><b>1.</b> (R' U' R) (U D') (R2 U R' U) (R U' R U') R2 D<br>
+                        <b>2.</b> y F' U' F R2 u R' U R U' R u' R2<br>
+                        <b>3.</b> R' U' R y R2 u R' U R U' R u' R2'<br>
+                        <b>4.</b> D R' U' R U D' R2 U R' U R U' R U' R2</td>
+                    </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Gc Perm</td>
+                    <td><img src="https://i.postimg.cc/svyRY2DH/Gc-Perm-Arrows.png"></td>
+                    <td><b>1.</b> R2 F2 (R U2 R U2) R' F (R U R' U') R' F R2<br>
+                        <b>2.</b> R2 U' R U' R U R' U R2 D' U R U' R' D <br>
+                        <b>3.</b> R2 S2 U' R2 D R2 D' F2 U B2 r2<br>
+                        <b>4.</b> R F R' U R' U' R' U R U' R' F' U' R U R' U' R2</td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Gd Perm</td>
+                    <td><img src="https://i.postimg.cc/PC5s7FDm/Gd-Perm-Arrows.png"> </td>
+                    <td><b>1.</b> (R U R') (U' D) (R2 U' R U') (R' U R' U) R2 D'<br>
+                        <b>2.</b> D' R U R' U' D R2 U' R U' R' U R' U R2<br>
+                        <b>3.</b> y R2 F' R U R U' R' F' R U2 R' U2 R' F2 R2<br>
+                        <b>4.</b> R U R' y' R2 u' R U' R' U R' u R2 </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Ja Perm</td>
+                    <td><img src="https://i.postimg.cc/N2Mg7dfV/Perm-No-Arrows-2.png"></td>
+                    <td><b>1.</b> x R2 F R F' (R U2 r' U) r U2<br>
+                        <b>2.</b> R' U L' U2 R U' R' U2 R L<br>
+                        <b>3.</b> L' U' L F L' U' L U L F' L2 U L<br>
+                        <b>4.</b> R2 F2 U' F2 D R2 D' R2 U R2
+                    </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - L Perm<br>
+                        <b>Used in</b> - ZBLL, BLD, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Jb Perm</td>
+                    <td><img src="https://i.postimg.cc/8jrKJ1PQ/Jb-Perm-Arrows.png"></td>
+                    <td><b>1.</b> (R U R') F' (R U R' U') R' F (R2 U' R')<br>
+                        <b>2.</b> R U2 R' U' R U2 L' U R' U' L<br>
+                        <b>3.</b> R U2 R' U' R U2 L' U R' U' r x<br>
+                        <b>4.</b> L' U R U' L U2 R' U R U2 R'<br>
+
+                    </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, BLD, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font> </td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Ra Perm</td>
+                    <td><img src="https://i.postimg.cc/18jTjRsQ/Ra-Perm-Arrows.png"></td>
+                    <td><b>1.</b> (R U R') F' (R U2 R' U2) R' F (R U R U2) R'<br>
+                        <b>2.</b> y R U R' F' R U2 R' U2 R' F R U R U2 R'<br>
+                        <b>3.</b> y2 R U2 R' U2 R B' R' U' R U R B R2<br>
+                        <b>4.</b> R U2 R2 F R F' R U' R' F' U F R U' R'</td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Rb Perm</td>
+                    <td><img src="https://i.postimg.cc/kVRZ3rgt/Rb-Perm-Arrows.png"></td>
+                    <td><b>1.</b> (R' U2 R U2) R' F (R U R' U') R' F' R2<br>
+                        <b>2.</b> R' U2 R' D' R U' R' D R U R U' R' U' R<br>
+                        <b>3.</b> y R2 F R U R U' R' F' R U2 R' U2 R<br>
+                        <b>4.</b> y' R U2 R' U2 R' F R2 U' R' U' R U R' F' R U R' U R U2 R'<br></td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>T Perm</td>
+                    <td><img src="https://i.postimg.cc/7JwQ2fMg/T-Perm-Arrows.png"></td>
+                    <td><b>1.</b> (R U R' U') R' F (R2 U' R' U') (R U R') F'<br>
+                        <b>2.</b> R U R' U' R' F R2 U' R' U F' L' U L<br>
+                        <b>3.</b> R 2 U R2 U' R2 U' D R2 U' R2 U R2 D'<br>
+                        <b>4.</b> y2 L' U' L U L F' L2 U L U L' U' L F
+                    </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL, ZZLL, BLD<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>E Perm</td>
+                    <td><img src="https://i.postimg.cc/5jzx5G5y/E-Perm-Arrows.png"></td>
+                    <td><b>1.</b> x' (R U' R') D (R U R') D' (R U R') D (R U' R') D'<br>
+                        <b>2.</b> R2 U R' U' y R U R' U' R U R' U' R U R' y' R U' R2<br>
+                        <b>3.</b> R2 U R2 U D R2 U' R2 U R2 U' D' R2 U R2 U2 R2<br>
+                        <b>4.</b> z U2 R2 F R U R' U' R U R' U' R U R' U' F' R2 U2 z'
+                    </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL, CPLL, L4C, ZZLL<br>
+                        <b>Probability</b> - <font style="color:#78ff78">1/36</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Na Perm</td>
+                    <td><img src="https://i.postimg.cc/m1yJXQ2X/Na-Perm-Arrows.png"></td>
+                    <td><b>1.</b> (R U R' U) (R U R') F' (R U R' U') R' F (R2 U' R' U2) (R U' R')<br>
+                        <b>2.</b> L U' R U2 L' U R' L U' R U2 L' U R'<br>
+                        <b>3.</b> z U R' D R2 U' R D' U R' D R2 U' R D' z'<br>
+                        <b>4.</b> r' D r U2 r' D r U2 r' D r U2 r' D r U2 r' D r
+                    </td>
+                    <td><b>Category</b> - Diagonal Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL, ZZLL<br>
+                        <b>Probability</b> - <font style="color:tomato">1/72</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Nb Perm</td>
+                    <td><img src="https://i.postimg.cc/ZWR2HvkH/Nb-Perm-Arrows.png"></td>
+                    <td><b>1.</b> R' (U R U' R') F' U' F (R U R') (F R' F' R) U' R<br>
+                        <b>2.</b> R' U L' U2 R U' L R' U L' U2 R U' L<br>
+                        <b>3.</b> z D' R U' R2 D R' U D' R U' R2 D R' U z'<br>
+                        <b>4.</b> r D r' U2 r D r' U2 r D r' U2 r D r' U2 r D r'
+                    </td>
+                    <td><b>Category</b> - Diagonal Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL, ZZLL<br>
+                        <b>Probability</b> - <font style="color:tomato">1/72</font>/</td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>V Perm</td>
+                    <td><img src="https://i.postimg.cc/4YjGhQKV/V-Perm-Arrows.png"></td>
+                    <td><b>1.</b> (R' U R' U') R D' R' D R' U D' R2 U' R2 D R2<br>
+                        <b>2.</b> R' U R' d' R' F' R2 U' R' U R' F R F<br>
+                        <b>3.</b> z D' R2 D R2 U R' D' R U' R U R' D R U'<br>
+                        <b>4.</b> R' U R' U' R D' R' D R' U D' R2 U' R2 D R2
+                    </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Y Perm</td>
+                    <td><img src="https://i.postimg.cc/DJP3HVxP/Y-Perm-Arrows.png"></td>
+                    <td><b>1.</b> F (R U' R' U') (R U R') F' (R U R' U') (R' F R F')<br>
+                        <b>2.</b> R' F R2 U' R' U' R U R' F' R U R' U' F'<br>
+                        <b>3.</b> R2 U' R2 U' R2 U R' F' R U R2 U' R' F R<br>
+                        <b>4.</b> y2 R' U2 R' F' R2 U' R' F' U' F R U R' F U2 R</td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL, BLD<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>H Perm</td>
+                    <td><img src="https://i.postimg.cc/Y44crGb0/H-Perm-Arrows.png"></td>
+                    <td><b>1.</b> M2 U' M2 U2 M2 U' M2<br>
+                        <b>2.</b> M2 U M2 U2 M2 U M2<br>
+                        <b>3.</b> R2 U2 R U2 R2 U2 R2 U2 R U2 R2<br>
+                        <b>4.</b> R2 U2 R' U2 R2 U2 R2 U2 R' U2 R2<br>
+                    </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - X Perm<br>
+                        <b>Used in</b> - ZBLL, PLL, ZZLL, ELL, CPLL, EPLL<br>
+                        <b>Probability</b> - <font style="color:tomato">1/72</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Ua Perm</td>
+                    <td><img src="https://i.postimg.cc/2V8Cp6Rb/Ua-Perm-Arrows.png"></td>
+                    <td><b>1.</b> M2 U M U2 M' U M2<br>
+                        <b>2.</b> R U' R U R U R U' R' U' R2<br>
+                        <b>3.</b> y' R2 U' S' U2 S U' R2<br>
+                        <b>4.</b> R2 U' R' U' R U R U R U' R</td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL, EPLL, BLD, ELL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Ub Perm</td>
+                    <td><img src="https://i.postimg.cc/Tp7fT6fk/Ub-Perm-Arrows.png"></td>
+                    <td><b>1.</b> M2 U' M U2 M' U' M2<br>
+                        <b>2.</b> R2 U R U R' U' R' U' R' U R'<br>
+                        <b>3.</b> y L2' U S U2 S' U L2<br>
+                        <b>4.</b> y2 R' U R' U' R' U' R' U R U R2</td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL, EPLL, BLD, ELL<br>
+                        <b>Probability</b> - <font style="color:dodgerblue">1/18</font></td>
+                        <td></td>
+                </tr>
+                <tr>
+                    <td>Z Perm</td>
+                    <td><img src="https://i.postimg.cc/pyPH8TdG/Z-Perm-Arrows.png"></td>
+                    <td><b>1.</b> M2 U' M2 U' M' U2 M2 U2 M' U2<br>
+                        <b>2.</b> y M2 U M2 U M' U2 M2 U2 M'<br>
+                        <b>3.</b> R' U' R U' R U R U' R' U R U R2 U' R'<br>
+                        <b>4.</b> y M' U' M2 U' M2 U' M' U2 M2
+                    </td>
+                    <td><b>Category</b> - Adjacent Corner Swap<br>
+                        <b>Alternate Name(s)</b> - None<br>
+                        <b>Used in</b> - ZBLL, PLL, ZZLL, ELL, EPLL<br>
+                        <b>Probability</b> - <font style="color:#78ff78">1/36</font></td>
+                        <td><a href="google.com">Click</a></td>
+                    </tr>
+                </tbody>  
+        </table></center>
+
+        <style>
+                        .socials  {
+                        color: rgb(209, 209, 209);}
+                    
+                        
+                        /* unvisited link */
+                        a:link {
+                        color: rgb(209, 209, 209);
+                        }
+
+                        /* visited link */
+                        a:visited {
+                        color: rgb(209, 209, 209);
+                        }
+
+                        /* mouse over link */
+                        a:hover {
+                        color: rgb(190, 190, 190);
+                        }
+
+                        /* selected link */
+                        a:active {
+                        color: #0D6EFE;
+                        }
+                        
+        </style>
+        
+        <div class="socials">
+            <center>
+                <a href="https://www.instagram.com/cubingsimplified/" target="_blank">
+            <i alt="Insta"class="fa-brands fa-instagram"></i></a>&nbsp; 
+
+            <a href="https://discord.gg/SeEMV3dsN4" target="_blank">
+            <i alt="Discord"class="fa-brands fa-discord"></i></a>&nbsp; 
+
+            <a href="https://github.com/CubingSimplified" target="_blank">
+                <i alt="GitHub"class="fa-brands fa-github"></i></a>&nbsp; </center>
+        </div>
+     </body>
+</html>
+<script>
+
+</script>
